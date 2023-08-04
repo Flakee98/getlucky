@@ -6,7 +6,7 @@ const Footer = () => {
     <>
     <div className="display__desktop">
        <div className="first" style={{ gap: "0" }}>
-      <div className="footer1">
+      {/* <div className="footer1">
         <h1>
           Streamline Your <br />
           Data Processes
@@ -20,7 +20,7 @@ const Footer = () => {
             <a href="hi">Book a Call</a>
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="footer2">
         <div className="footer2__container">
           <div className="logo__and__text">

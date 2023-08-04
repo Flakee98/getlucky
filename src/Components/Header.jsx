@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 const Header = () => {
   const [show, setShow] = useState(false);
   const controlNavbar = () => {
@@ -59,6 +60,17 @@ const Header = () => {
 
             <a href="/contact">Demo</a>
           </div>
+          {/* <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-custom-components">
+        Dropdown Button
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown> */}
           <div className="connect">
             <a href="/connect">Contact Us</a>
           </div>
