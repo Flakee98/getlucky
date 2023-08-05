@@ -52,13 +52,13 @@ const Header = () => {
             </Link>
           </div>
           <div className="nav">
-            <a href="/">Platform</a>
+            <a href="/">Play </a>
         
 
-            <a href="/about">Integration</a>
+            <a href="/about">Prizes</a>
            
 
-            <a href="/contact">Demo</a>
+            <a href="/contact">Draws</a>
           </div>
           {/* <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-custom-components">
@@ -94,13 +94,13 @@ const Header = () => {
         className={menuActive ? 'header__navs' : ''}
         >
           <div className="navs">
-            <a href="a">Platform</a>
+            <a href="a">Play</a>
           </div>
           <div className="navs">
-            <a href="a">Integration</a>
+            <a href="a">Prizes</a>
           </div>
           <div className="navs">
-            <a href="a">Demo</a>
+            <a href="a">Draws</a>
           </div>
           <div className="cta__mob__heart">
             <button>
