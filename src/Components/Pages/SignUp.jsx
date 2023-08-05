@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import Select from 'react-select';
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
+import axios from "axios"
 function Sample() {
 
     const options = [
+        { value: 'United Arab Emirates', label: 'United Arab Emirates' },
         { value: 'India', label: 'India' },
-        { value: 'America', label: 'America' },
-        { value: 'US', label: 'US' },
+        { value: 'Philippines', label: 'Philippines' },
+        { value: 'Qatar', label: 'Qatar' },
+        { value: 'Saudi Arabia', label: 'Saudi Arabia' },
+        { value: 'Oman', label: 'Oman' },
+
       ];
       const [phoneNumber, setPhoneNumber] = useState('');
+      const [country, setCountry] = useState('');
+
 
       const handlePhoneNumberChange = (value) => {
         setPhoneNumber(value);
@@ -21,6 +28,48 @@ function Sample() {
         // Do something with the phone number (with country code)
         console.log('Phone Number:', phoneNumber);
       };
+      useEffect(() => {
+        axios.get('https://www.universal-tutorial.com/api/getaccesstoken', {
+          headers: {
+            'api-token': "PTV48JS8DMTrAjZhu88hRfaa1T30QGsklvMtiTKYDljBBGjWeHBcZa48VE4gTOmxD4I",
+            'user-email': "sreejithrs001@gmail.com",
+            // 'Authorization': `Bearer ${apiKey}`
+          }
+        })
+          .then(response => {
+            // Handle the response data
+            // console.log(response.data);
+          })
+          .catch(error => {
+            // Handle errors
+            console.error('Error:', error);
+          });
+      }, [])
+
+      const handlesChange =(country)=>{
+        setCountry(country)
+        console.log(country.value);
+      }
+      
+      // state get api 
+      useEffect(() => {
+        axios.get('https://www.universal-tutorial.com/api/states/India', {
+          headers: {
+            'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzcmVlaml0aHJzMDAxQGdtYWlsLmNvbSIsImFwaV90b2tlbiI6IlBUVjQ4SlM4RE1UckFqWmh1ODhoUmZhYTFUMzBRR3NrbHZNdGlUS1lEbGpCQkdqV2VIQmNaYTQ4VkU0Z1RPbXhENEkifSwiZXhwIjoxNjkxMzE1MzE4fQ.WZDUtKYt8eC9Tit3Ba1yF8Fv2EtF535KwsgrgsCHN4M",
+            // 'Authorization': `Bearer ${apiKey}`
+          }
+        })
+          .then(response => {
+            // Handle the response data
+            // console.log("state",response.data);
+          })
+          .catch(error => {
+            // Handle errors
+            console.error('Error:', error);
+          });
+      }, [country])
+      
+     
   return (
     
     <div>
@@ -75,8 +124,10 @@ function Sample() {
                        <Form.Label>Country *</Form.Label>
                       <Select
                        options={options}
+                       value={country}
                        isSearchable
                        placeholder="Select Country"
+                       onChange={ handlesChange}
                        />
                     </Form.Group>
                           
