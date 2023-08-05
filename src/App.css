@@ -63,6 +63,12 @@
     opacity: 0.5;
   }
 
+  .sc{
+    height: max-content;
+    padding-bottom: 12rem;
+    padding-top: 2rem;
+  }
+
   .menu {
     display: flex;
     /* justify-content: space-around; */
@@ -699,3 +705,8 @@ body {
   transform: perspective(1000px) rotateX(0deg) rotateY(40deg) rotateZ(0deg);
   z-index: 1;
 }
+.signup__page{
+  background-color: #24396a;
+  color: white;
+}
+
