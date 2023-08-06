@@ -65,7 +65,7 @@
 
   .sc{
     height: max-content;
-    padding-bottom: 12rem;
+    padding-bottom: 8rem;
     padding-top: 2rem;
   }
 
@@ -129,6 +129,11 @@ body {
   top: 0;
   z-index: 999;
   transition: 0.3s linear;
+}
+
+a{
+  text-decoration: none;
+  color: #fff;
 }
 
 .logo {
@@ -711,7 +716,7 @@ body {
 }
 
 .sc{
-  margin-top: 1rem;
+  margin-top: 3rem;
   margin-bottom: 1rem;
 }
 
