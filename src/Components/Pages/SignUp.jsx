@@ -111,13 +111,13 @@ function SignUp() {
                    
                     <div class="row">
                     
-                    <Form.Group className="mb-3 col" controlId="formBasicPassword">
+                    <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Building Name *</Form.Label>
                       <Form.Control type="phon" placeholder="Eg: Little Tower" />
                     </Form.Group>
                    
                    
-                    <Form.Group controlId="formGroupSearch" className='col mb-3'>
+                    <Form.Group controlId="formGroupSearch" className='col-md-6 col-12 mb-3'>
                        <Form.Label>Country *</Form.Label>
                       <Select
                        options={options}
@@ -133,7 +133,7 @@ function SignUp() {
                            
                     <div class="row">
                     
-                    <Form.Group controlId="formGroupSearch" className='col mb-3'>
+                    <Form.Group controlId="formGroupSearch" className='col-md-6 col-12 mb-3'>
                        <Form.Label>State / Emirates *</Form.Label>
                       <Select
                        options={options}
@@ -142,7 +142,7 @@ function SignUp() {
                        />
                     </Form.Group>
                    
-                    <Form.Group controlId="formGroupSearch" className='col mb-3'>
+                    <Form.Group controlId="formGroupSearch" className='col-md-6 col-12 mb-3'>
                        <Form.Label>Area / District *</Form.Label>
                       <Select
                        options={options}
@@ -156,12 +156,12 @@ function SignUp() {
                       
                   <div class="row">
                     
-                    <Form.Group className="mb-3 col" controlId="formBasicPassword">
+                    <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Create Password *</Form.Label>
                       <Form.Control type="password" placeholder="Create Password " />
                     </Form.Group>
                      
-                    <Form.Group className="mb-3 col" controlId="formBasicPassword">
+                    <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Confirm Password *</Form.Label>
                       <Form.Control type="password" placeholder="Confirm Password " />
                     </Form.Group> 

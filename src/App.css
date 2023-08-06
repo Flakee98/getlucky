@@ -712,7 +712,16 @@ a{
 }
 .signup__page{
   background-color: #24396a;
+}
+
+.form-label, .form-check-label, .text-uppercase, p{
   color: white;
+
+}
+
+.form-label{
+  font-size: small;
+  margin: 0;
 }
 
 .sc{
@@ -720,3 +729,6 @@ a{
   margin-bottom: 1rem;
 }
 
+.css-qbdosj-Input{
+  color: #020014 !important;
+}
