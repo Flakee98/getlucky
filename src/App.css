@@ -65,7 +65,7 @@
 
   .sc{
     height: max-content;
-    padding-bottom: 8rem;
+    padding-bottom: 18rem;
     padding-top: 2rem;
   }
 
@@ -716,7 +716,6 @@ a{
 
 .form-label, .form-check-label, .text-uppercase, p{
   color: white;
-
 }
 
 .form-label{
