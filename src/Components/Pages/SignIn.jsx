@@ -7,6 +7,11 @@ function Signin() {
   const [clickMobile, setClickMobile] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const [email, setEmail] =useState('')
+  const [password, setPassword] =useState('')
+
+
+
   const EmailClick = () => {
     setClickEmail(true);
     setClickMobile(false);
@@ -16,6 +21,7 @@ function Signin() {
     setClickMobile(true);
     setClickEmail(false);
   };
+  
   const handlePhoneNumberChange = (value) => {
     setPhoneNumber(value);
   };
@@ -70,7 +76,7 @@ function Signin() {
                             controlId="formBasicPassword"
                           >
                             <Form.Label>Email ID *</Form.Label>
-                            <Form.Control type="email" placeholder="Email Id" />
+                            <Form.Control type="email" placeholder="Email Id"  onChange={((e)=> setEmail(e.target.value))}/>
                           </Form.Group>
                         </>
                       )}
@@ -94,7 +100,7 @@ function Signin() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password *</Form.Label>
-                        <Form.Control type="password" placeholder="Password " />
+                        <Form.Control type="password" placeholder="Password " onChange={((e)=> setPassword(e.target.value))} />
                       </Form.Group>
 
                       <div className="row">

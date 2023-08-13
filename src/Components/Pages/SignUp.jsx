@@ -15,20 +15,38 @@ function SignUp() {
         { value: 'Saudi Arabia', label: 'Saudi Arabia' },
         { value: 'Oman', label: 'Oman' },
   ];
-  const [phoneNumber, setPhoneNumber] = useState("");
-    
-      const [country, setCountry] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [authent, setAuthent] = useState("");
+  const [country, setCountry] = useState('');
+  const [mobCountry, setMobCountry] = useState('ae');
+  const [state, setState] = useState([]);
+  const [stateGet, setStateGet] = useState('');
+  const [city, setCity] = useState([]);
+  const [selectCity, setSelectCity] = useState('');
+
+  const [name, setName] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [buildingName, setBuildingName] = useState("");
+  const [CreatePassword , setCreatePassword ] = useState("");
+  const [confirmPassword , setConfirmPassword ] = useState("");
+  const [emailvalid , setEmailvalid] = useState("");
+
+
 
 
       const handlePhoneNumberChange = (value) => {
         setPhoneNumber(value);
+        console.log("phone number", phoneNumber);
+
       };
     
       const handleSubmit = (e) => {
         e.preventDefault();
         // Do something with the phone number (with country code)
-        console.log('Phone Number:', phoneNumber);
+        // console.log('Phone Number:', phoneNumber);
       };
+
+  ///////////////////////////////////////////////// Api key GetAPI For Country
       useEffect(() => {
         axios.get('https://www.universal-tutorial.com/api/getaccesstoken', {
           headers: {
@@ -39,30 +57,40 @@ function SignUp() {
         })
           .then(response => {
             // Handle the response data
-            // console.log(response.data);
+            setAuthent(response.data.auth_token)
           })
           .catch(error => {
             // Handle errors
             console.error('Error:', error);
           });
-      }, [])
+      },[])
 
+    
       const handlesChange =(country)=>{
         setCountry(country)
-        console.log(country.value);
+        // setState([])
+        // setCity([])
+
       }
       
-      // state get api 
+  ///////////////////////////////////////////////// Api key GetAPI For States
+
       useEffect(() => {
-        axios.get('https://www.universal-tutorial.com/api/states/India', {
+        axios.get(`https://www.universal-tutorial.com/api/states/${country.value}`, {
+          // 'https://www.universal-tutorial.com/api/states/India'
           headers: {
-            'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzcmVlaml0aHJzMDAxQGdtYWlsLmNvbSIsImFwaV90b2tlbiI6IlBUVjQ4SlM4RE1UckFqWmh1ODhoUmZhYTFUMzBRR3NrbHZNdGlUS1lEbGpCQkdqV2VIQmNaYTQ4VkU0Z1RPbXhENEkifSwiZXhwIjoxNjkxMzE1MzE4fQ.WZDUtKYt8eC9Tit3Ba1yF8Fv2EtF535KwsgrgsCHN4M",
+            'Authorization': `Bearer ${authent}`,
             // 'Authorization': `Bearer ${apiKey}`
           }
         })
           .then(response => {
             // Handle the response data
-            // console.log("state",response.data);
+            const processedStates = response.data.map(item => ({
+              label: item.state_name,
+              value: item.state_name.toLowerCase().replace(/\s/g, '-'), // Example value generation
+            }));
+            setState(processedStates)
+
           })
           .catch(error => {
             // Handle errors
@@ -70,11 +98,74 @@ function SignUp() {
           });
       }, [country])
       
-     
+      
+      const stateChange =(stateGet)=>{
+        setStateGet(stateGet)
+      }
+
+  ///////////////////////////////////////////////// Api key GetAPI For City
+  useEffect(() => {
+    axios.get(`https://www.universal-tutorial.com/api/cities/${stateGet.value}`, {
+      // 'https://www.universal-tutorial.com/api/states/India'
+      headers: {
+        'Authorization': `Bearer ${authent}`,
+        // 'Authorization': `Bearer ${apiKey}`
+      }
+    })
+      .then(response => {
+        // Handle the response data
+        const processedCitys = response.data.map(item => ({
+          label: item.city_name,
+          value: item.city_name.toLowerCase().replace(/\s/g, '-'), // Example value generation
+        }));
+        setCity(processedCitys)
+
+      })
+      .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+      });
+  }, [stateGet])
+
+  
+  const cityChange=(selectCity)=>{
+    setSelectCity(selectCity)
+  }
+
+//////////////////////////////////// Register Api
+ const registerSubmit =async()=>{
+  console.log("keri");
+  try {
+    if(!name){
+      setEmailvalid("not valid email")
+    }else{
+      const response = await axios.post('http://3.29.63.151/api/v1/web/auth/register', {
+        name :name,
+        email: emailId,
+        phoneNumber: phoneNumber,
+        building: buildingName,
+        country: country.value,
+        state: stateGet.value,
+        district: selectCity.label,
+        password: CreatePassword
+  
+      })
+    }
+    
+
+    // const {token} = response.data;
+    // Store the token in local storage or a cookie
+    // localStorage.setItem('token', token);
+
+    console.log('Registration successful');
+  } catch (error) {
+    console.error('Registration failed:', error);
+  }
+ }
  
   return (
   <div>
-    <Container className='sc'>
+    <Container className='sc' >
       <Row className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={8} lg={6} xs={12}>
           <div className="border border-3 border-primary"></div>
@@ -88,7 +179,7 @@ function SignUp() {
                       <Form.Label className="text-center">
                       Full Name (As Per Passport/ID)*
                       </Form.Label>
-                      <Form.Control type="name" placeholder="Full Name (As Per Passport/ID)" />
+                      <Form.Control type="name" placeholder="Full Name (As Per Passport/ID)" onChange={((e)=> setName(e.target.value))}/>
                     </Form.Group> 
 
          
@@ -96,7 +187,8 @@ function SignUp() {
               <Form.Label>Mobile No *</Form.Label>
               <PhoneInput
                 inputStyle={{ width: '100%' }}
-                country={'us'}
+                
+                country={'ae'}
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
               />
@@ -105,7 +197,8 @@ function SignUp() {
                     
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                       <Form.Label>Email ID *</Form.Label>
-                      <Form.Control type="phon" placeholder="Email Id" />
+                      <Form.Control type="email" placeholder="Email Id" onChange={((e)=> setEmailId(e.target.value))} />
+                      {emailvalid && <p>{emailvalid}</p>}
                     </Form.Group>
 
                    
@@ -113,14 +206,15 @@ function SignUp() {
                     
                     <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Building Name *</Form.Label>
-                      <Form.Control type="phon" placeholder="Eg: Little Tower" />
+                      <Form.Control type="name" placeholder="Eg: Little Tower"  onChange={((e)=>setBuildingName(e.target.value))}/>
                     </Form.Group>
                    
                    
                     <Form.Group controlId="formGroupSearch" className='col-md-6 col-12 mb-3'>
                        <Form.Label>Country *</Form.Label>
                       <Select
-                       options={options}
+                    
+                      options={options}
                        value={country}
                        isSearchable
                        placeholder="Select Country"
@@ -136,18 +230,22 @@ function SignUp() {
                     <Form.Group controlId="formGroupSearch" className='col-md-6 col-12 mb-3'>
                        <Form.Label>State / Emirates *</Form.Label>
                       <Select
-                       options={options}
+                       options={state}
+                       value={stateGet}
                        isSearchable
                        placeholder="Select State / Emirates "
+                       onChange={ stateChange}
                        />
                     </Form.Group>
                    
                     <Form.Group controlId="formGroupSearch" className='col-md-6 col-12 mb-3'>
                        <Form.Label>Area / District *</Form.Label>
                       <Select
-                       options={options}
+                       options={city}
+                       value={selectCity}
                        isSearchable
                        placeholder="Select Area / District "
+                       onChange={cityChange}
                        />
                     </Form.Group>
                           
@@ -158,12 +256,12 @@ function SignUp() {
                     
                     <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Create Password *</Form.Label>
-                      <Form.Control type="password" placeholder="Create Password " />
+                      <Form.Control type="password" placeholder="Create Password "  onChange={((e)=> setCreatePassword(e.target.value))}/>
                     </Form.Group>
                      
-                    <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
+                    <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword"> 
                       <Form.Label>Confirm Password *</Form.Label>
-                      <Form.Control type="password" placeholder="Confirm Password " />
+                      <Form.Control type="password" placeholder="Confirm Password "  onChange={((e)=> setConfirmPassword(e.target.value))}/>
                     </Form.Group> 
                     </div>
 
@@ -182,7 +280,7 @@ function SignUp() {
                     
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary"  onClick={registerSubmit}>
                           Sign UP
                         </Button>
                       </div>
