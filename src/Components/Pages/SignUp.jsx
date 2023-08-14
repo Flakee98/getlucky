@@ -204,17 +204,16 @@ function SignUp() {
       setEmailvalid("not valid email")
     }else{
       if (validateForm()) {
-      const response = await axios.post('http://3.29.63.151/api/v1/web/auth/register', {
-        name :name,
-        email: emailId,
-        phoneNumber: phoneNumber,
-        building: buildingName,
-        country: country.value,
-        state: stateGet.value,
-        district: selectCity.label,
-        password: CreatePassword
-  
-      })
+        const response = await axios.post('http://3.29.63.151/api/v1/web/auth/register', {
+          name: formData.name,
+          email: formData.emailId,
+          phoneNumber: phoneNumber,
+          building: formData.buildingName,
+          country: country.value,
+          state: stateGet.value,
+          district: selectCity.label,
+          password: formData.createPassword
+      });
     }
     else{
       console.log("Validation Error");
