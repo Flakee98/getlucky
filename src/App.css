@@ -715,6 +715,11 @@ a{
 .signup__page{
   background-color: #24396a;
 }
+.signup__page span{
+  margin: 4px;
+  font-size: small;
+  color: red;
+}
 
 .form-label, .form-check-label, .text-uppercase, p{
   color: white;

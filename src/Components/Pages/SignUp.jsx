@@ -29,7 +29,69 @@ function SignUp() {
   const [buildingName, setBuildingName] = useState("");
   const [CreatePassword , setCreatePassword ] = useState("");
   const [confirmPassword , setConfirmPassword ] = useState("");
+
+  const [formData, setFormData] = useState({
+    name: '',
+    emailId: '',
+    buildingName: '',
+    createPassword: '',
+    confirmPassword: '',
+  });
+  
   const [emailvalid , setEmailvalid] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  }
+
+
+  const validateForm = () => {
+    let formErrors = {};
+
+    if (!formData.name.trim()) {
+      formErrors.name = "Full Name is required.";
+    }
+
+    if (!phoneNumber) {
+      formErrors.phoneNumber = "Mobile number is required.";
+    }
+
+    if (!formData.emailId) {
+      formErrors.emailId = "Email ID is required.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.emailId)) {
+      formErrors.emailId = "Email ID is not valid.";
+    }
+
+    if (!formData.buildingName.trim()) {
+      formErrors.buildingName = "Building Name is required.";
+    }
+
+    if (!country) {
+      formErrors.country = "Country is required.";
+    }
+
+    if (!stateGet) {
+      formErrors.stateGet = "State / Emirates is required.";
+    }
+
+    if (!selectCity) {
+      formErrors.selectCity = "Area / District is required.";
+    }
+
+    if (!formData.createPassword.trim()) {
+      formErrors.createPassword = "Password is required.";
+    }
+
+    if (formData.createPassword !== formData.confirmPassword) {
+      formErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;  // Returns true if no errors
+  }
 
 
 
@@ -135,10 +197,13 @@ function SignUp() {
 //////////////////////////////////// Register Api
  const registerSubmit =async()=>{
   console.log("keri");
+  
   try {
+    
     if(!name){
       setEmailvalid("not valid email")
     }else{
+      if (validateForm()) {
       const response = await axios.post('http://3.29.63.151/api/v1/web/auth/register', {
         name :name,
         email: emailId,
@@ -151,13 +216,17 @@ function SignUp() {
   
       })
     }
+    else{
+      console.log("Validation Error");
+    }
+    }
     
 
     // const {token} = response.data;
     // Store the token in local storage or a cookie
     // localStorage.setItem('token', token);
 
-    console.log('Registration successful');
+    // console.log('Registration successful');
   } catch (error) {
     console.error('Registration failed:', error);
   }
@@ -179,7 +248,8 @@ function SignUp() {
                       <Form.Label className="text-center">
                       Full Name (As Per Passport/ID)*
                       </Form.Label>
-                      <Form.Control type="name" placeholder="Full Name (As Per Passport/ID)" onChange={((e)=> setName(e.target.value))}/>
+                      <Form.Control type="name" placeholder="Full Name (As Per Passport/ID)" onChange={handleInputChange}/>
+                      {errors.name && <span className="text-danger">{errors.name}</span>}
                     </Form.Group> 
 
          
@@ -197,8 +267,8 @@ function SignUp() {
                     
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                       <Form.Label>Email ID *</Form.Label>
-                      <Form.Control type="email" placeholder="Email Id" onChange={((e)=> setEmailId(e.target.value))} />
-                      {emailvalid && <p>{emailvalid}</p>}
+                      <Form.Control type="email" placeholder="Email Id" onChange={e => setName(e.target.value)} />
+                      {emailvalid && <span>{emailvalid}</span>}
                     </Form.Group>
 
                    
@@ -207,6 +277,7 @@ function SignUp() {
                     <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Building Name *</Form.Label>
                       <Form.Control type="name" placeholder="Eg: Little Tower"  onChange={((e)=>setBuildingName(e.target.value))}/>
+                      <span>Hii</span>
                     </Form.Group>
                    
                    
