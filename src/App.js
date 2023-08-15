@@ -26,8 +26,6 @@ function App() {
       <Route path="/winners" element={<Winners/>} />
       <Route path="/signupotp" element={<Otppage/>} />
 
-
-
       </Routes>
   
       <Footer />

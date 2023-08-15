@@ -273,7 +273,6 @@ function SignUp() {
                     <Form.Group className="mb-3 col-md-6 col-12" controlId="formBasicPassword">
                       <Form.Label>Building Name *</Form.Label>
                       <Form.Control type="name" placeholder="Eg: Little Tower"  onChange={((e)=>setBuildingName(e.target.value))}/>
-                      <span>Hii</span>
                     </Form.Group>
                    
                    
@@ -285,10 +284,7 @@ function SignUp() {
                        value={country}
                        isSearchable
                        placeholder="Select Country"
-                       onChange={()=>{  
-                        handlesChange();
-                        handleInputChange();
-                       }} 
+                       onChange={ handlesChange} 
                        />
                     </Form.Group>
                           

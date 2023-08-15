@@ -4,8 +4,8 @@ import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import axios from 'axios'
 function Signin() {
-  const [clickEmail, setClickEmail] = useState(true);
-  const [clickMobile, setClickMobile] = useState(false);
+  const [clickEmail, setClickEmail] = useState(false);
+  const [clickMobile, setClickMobile] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const [email, setEmail] =useState('')
@@ -114,7 +114,7 @@ function Signin() {
                             <Form.Label>Mobile No *</Form.Label>
                             <PhoneInput
                               inputStyle={{ width: "100%" }}
-                              country={"us"}
+                              country={"ae"}
                               value={phoneNumber}
                             />
                           </Form.Group>
