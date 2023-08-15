@@ -288,7 +288,10 @@ function SignUp() {
                        value={country}
                        isSearchable
                        placeholder="Select Country"
-                       onChange={ handlesChange}
+                       onChange={()=>{  
+                        handlesChange();
+                        handleInputChange();
+                       }} 
                        />
                     </Form.Group>
                           
