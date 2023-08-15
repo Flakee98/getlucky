@@ -196,7 +196,19 @@ function SignUp() {
 
 //////////////////////////////////// Register Api
  const registerSubmit =async()=>{
-  console.log("keri");
+    const  headers = {
+        'x-api-key': 'eMnJUkNEvNBjDLvsJpmwL4fRFUX26jPH4VQw62zLckrB5GaBgsdrWajQEYCcHMRjychja349ZjEvL8Pex665ud5EBWuhN8aSTTS6Anp8af6DJ64pPJwJbRMsjGUZMHYb',
+      }
+      const requestData = {
+        name: formData.name,
+        email: formData.emailId,
+        phoneNumber: phoneNumber,
+        building: formData.buildingName,
+        country: country.value,
+        state: stateGet.value,
+        district: selectCity.label,
+        password: formData.createPassword
+      };
   
   try {
     
@@ -204,28 +216,13 @@ function SignUp() {
       setEmailvalid("not valid email")
     }else{
       if (validateForm()) {
-        const response = await axios.post('http://3.29.63.151/api/v1/web/auth/register', {
-          name: formData.name,
-          email: formData.emailId,
-          phoneNumber: phoneNumber,
-          building: formData.buildingName,
-          country: country.value,
-          state: stateGet.value,
-          district: selectCity.label,
-          password: formData.createPassword
-      });
+        const response = await axios.post('http://http://3.28.74.200/api/v1/web/auth/register',requestData, {headers});
     }
     else{
       console.log("Validation Error");
     }
     }
     
-
-    // const {token} = response.data;
-    // Store the token in local storage or a cookie
-    // localStorage.setItem('token', token);
-
-    // console.log('Registration successful');
   } catch (error) {
     console.error('Registration failed:', error);
   }

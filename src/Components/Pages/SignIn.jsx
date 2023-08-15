@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
+import axios from 'axios'
 function Signin() {
   const [clickEmail, setClickEmail] = useState(true);
   const [clickMobile, setClickMobile] = useState(false);
@@ -31,6 +32,30 @@ function Signin() {
     // Do something with the phone number (with country code)
     console.log("Phone Number:", phoneNumber);
   };
+
+  const loginSubmit =async()=>{
+    const  headers = {
+        'x-api-key': 'eMnJUkNEvNBjDLvsJpmwL4fRFUX26jPH4VQw62zLckrB5GaBgsdrWajQEYCcHMRjychja349ZjEvL8Pex665ud5EBWuhN8aSTTS6Anp8af6DJ64pPJwJbRMsjGUZMHYb',
+      }
+      const requestData = {
+        email: email,
+        password: password,
+      };
+    try {
+            
+            const response = await axios.post('http://3.28.74.200/api/v1/web/auth/login',requestData, {headers}
+  
+        ).then(response => {
+          console.log('Login successful:', response.data);
+          // Handle successful login
+        })
+        
+        
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
+   }
+
 
   return (
     <div>
@@ -128,7 +153,7 @@ function Signin() {
                       </div>
 
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary"  onClick={loginSubmit}>
                           Sign In
                         </Button>
                       </div>
