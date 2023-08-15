@@ -9,6 +9,7 @@ import SignUp from "./Components/Pages/SignUp"
 import PastDrawResult from './Components/Pages/PastDrawResult';
 import PastDrawShows from './Components/Pages/PastDrawShows';
 import Winners from './Components/Pages/Winners';
+import Otppage from './Components/Pages/Otppage';
 
 
 
@@ -23,6 +24,8 @@ function App() {
       <Route path="/pastdrawresult" element={<PastDrawResult/>} />
       <Route path="/pastdrawshows" element={<PastDrawShows/>} />
       <Route path="/winners" element={<Winners/>} />
+      <Route path="/signupotp" element={<Otppage/>} />
+
 
 
       </Routes>
