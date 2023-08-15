@@ -114,13 +114,19 @@ body {
 
 /*****************************  Header  **************************************/
 
+.inner{
+  width: 80rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 .header {
   display: flex;
   padding: 15px 0px;
   width: 100%;
   justify-content: center;
-  align-items: center;
-  gap: 356px;
+  /* align-items: center; */
+  /* gap: 356px; */
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.02) 0%,
@@ -737,4 +743,97 @@ a{
 
 .css-qbdosj-Input{
   color: #020014 !important;
+}
+
+.home__banner{
+  margin-top: 5rem;
+  min-height: 40vh;
+  background: #FBCA27;
+}
+
+.mainrow h1{
+  color: #2B2B2B;
+font-family: Instrument Sans;
+font-size: 4rem;
+
+/* font-style: normal; */
+font-weight: 900;
+line-height: normal;
+}
+
+.mainrow p{
+  color: #2B2B2B;
+font-family: Instrument Sans;
+
+font-size: 1.4rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+line-height: 1.4;
+/* opacity: 0.8; */
+}
+
+button{
+  background: #102042;
+font-family: Instrument Sans;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  border-radius: 5px;
+}
+
+.abc{
+  gap: 0;
+  margin: 0;
+  margin-top: 0.5rem;
+  width: fit-content;
+}
+
+.abc span {
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+
+.abc p{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+
+  width: fit-content !important;
+
+}
+
+.bannerimg{
+  width: 30rem;
+  height: auto;
+}
+
+
+
+.prize-box{
+  background: #FFE4A9;
+  margin: 0rem 1rem;
+
+}
+
+
+.prize-box img{
+  width: 80%;
+  mix-blend-mode: color-burn;
+  width: 70px;
+  height: auto;
+}
+
+.marquee{
+  background-color: #102042;
+}
+
+.marquee p{
+  letter-spacing: 1px;
+}
+
+.second{
+  background: #FFE4A9;
+
 }
