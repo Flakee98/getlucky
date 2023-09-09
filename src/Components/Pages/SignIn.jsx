@@ -38,13 +38,12 @@ function Signin() {
         'x-api-key': 'eMnJUkNEvNBjDLvsJpmwL4fRFUX26jPH4VQw62zLckrB5GaBgsdrWajQEYCcHMRjychja349ZjEvL8Pex665ud5EBWuhN8aSTTS6Anp8af6DJ64pPJwJbRMsjGUZMHYb',
       }
       const requestData = {
-        email: email,
+        email: email, 
         password: password,
       };
     try {
             
-        const response = await axios.post('http://3.28.74.200/api/v1/web/auth/login',requestData, {headers}
-  
+        const response = await axios.post('http://3.29.64.96/api/v1/web/auth/login',requestData, {headers}
         ).then(response => {
           console.log('Login successful:', response.data);
           // Handle successful login
@@ -116,6 +115,7 @@ function Signin() {
                               inputStyle={{ width: "100%" }}
                               country={"ae"}
                               value={phoneNumber}
+                              onChange={console.log("phoneNumber", phoneNumber)}
                             />
                           </Form.Group>
                         </>

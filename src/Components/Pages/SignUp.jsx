@@ -216,7 +216,7 @@ function SignUp() {
       setEmailvalid("not valid email")
     }else{
       if (validateForm()) {
-        const response = await axios.post('http://http://3.28.74.200/api/v1/web/auth/register',requestData, {headers});
+        const response = await axios.post('http://http://3.29.64.96/api/v1/web/auth/register',requestData, {headers});
     }
     else{
       console.log("Validation Error");
